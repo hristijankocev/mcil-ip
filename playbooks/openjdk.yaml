@@ -1,0 +1,11 @@
+---
+# Install openjdk using the 'lean_delivery.java' role
+- name: Install openjdk java
+  hosts: localhost
+  become: yes
+  roles:
+    - role: lean_delivery.java
+      transport: repositories
+      java_major_version: 11
+
+

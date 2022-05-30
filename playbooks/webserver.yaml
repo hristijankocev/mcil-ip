@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  # Need privilege escalation to create folder in /var/
+  become: yes
+  tasks:
+    - name: Ensure git is installed
+      ansible.builtin.package:
+        name: git
+        state: present
+    - name: Clone remote repository
+      ansible.builtin.git:
+        repo: 'https://github.com/hristijankocev/mcil'
+        dest: /var/mcil/
+        update: no   
+    - name: Make sure the 'lean_delivery' role is present
+      command: ansible-galaxy install lean_delivery.java
