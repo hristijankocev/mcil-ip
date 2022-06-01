@@ -1,3 +1,5 @@
 ---
 # Master playbook
+- import_playbook: playbooks/git.yaml
 - import_playbook: playbooks/openjdk.yaml
+- import_playbook: playbooks/docker.yaml
