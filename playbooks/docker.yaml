@@ -1,5 +1,6 @@
 ---
-# Docker provides a quick and automated way to install using a script            # But we are gonna do it manually just for testing and practice purposes
+# Docker provides a quick and automated way to install using a script
+# But we are gonna do it manually just for testing and practice purposes
 - name: Install docker
   hosts: localhost
   become: yes
