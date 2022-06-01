@@ -1,6 +1,6 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- name: Git setup and java prep
+  hosts: localhost
   # Need privilege escalation to create folder in /var/
   become: yes
   tasks:
