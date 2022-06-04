@@ -1,5 +1,5 @@
 ---
-- name: Git setup and java prep
+- name: Git setup
   hosts: localhost
   # Need privilege escalation to create folder in /var/
   become: yes
@@ -13,5 +13,3 @@
         repo: 'https://github.com/hristijankocev/mcil'
         dest: /var/mcil/
         update: no   
-    - name: Make sure the 'lean_delivery' role is present
-      command: ansible-galaxy install lean_delivery.java

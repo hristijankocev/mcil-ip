@@ -1,0 +1,7 @@
+---
+- name: Preparations for JDK
+  # This role is needed so we can easily install JDK
+  hosts: localhost
+  tasks:
+    - name: Install the 'lean_delivery' role
+      command: ansible-galaxy install lean_delivery.java
