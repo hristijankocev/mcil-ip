@@ -21,7 +21,7 @@
         var: run_output.stderr_lines
     - name: Test connection to web app
       ansible.builtin.uri:
-        url: http://localhost:8080/
+        url: "http://{{inventory_hostname}}:8080/"
       register: result
       until: result.status == 200
       retries: 20
