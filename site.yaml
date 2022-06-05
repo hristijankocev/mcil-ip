@@ -4,3 +4,4 @@
 - import_playbook: playbooks/pre-jdk.yaml
 - import_playbook: playbooks/openjdk.yaml
 - import_playbook: playbooks/docker.yaml
+- import_playbook: playbooks/webapp.yaml
