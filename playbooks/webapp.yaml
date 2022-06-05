@@ -1,0 +1,28 @@
+---
+- name: Package the web app & run the containers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Package the spring boot app
+      ansible.builtin.command: ./mvnw package -Dmaven.test.skip
+      register: package_output
+      args:
+        chdir: "/var/mcil/"
+    - name: Output packaging result
+      ansible.builtin.debug:
+        var: package_output
+    - name: Run containers
+      ansible.builtin.command: docker compose up -d
+      args:
+        chdir: "/var/mcil/"
+      register: run_output
+    - name: 
+      ansible.builtin.debug:
+        var: run_output.stderr_lines
+    - name: Test connection to web app
+      ansible.builtin.uri:
+        url: http://localhost:8080/
+      register: result
+      until: result.status == 200
+      retries: 20
+      delay: 1

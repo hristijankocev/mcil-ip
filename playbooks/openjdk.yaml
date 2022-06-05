@@ -1,7 +1,7 @@
 ---
 # Install openjdk using the 'lean_delivery.java' role
 - name: Install openjdk java
-  hosts: localhost
+  hosts: all
   become: yes
   roles:
     - role: lean_delivery.java
