@@ -1,3 +1,6 @@
+[all:vars]
+web_app_local_repo_path=/var/mcil/
+
 [localhost]
 127.0.0.1
 

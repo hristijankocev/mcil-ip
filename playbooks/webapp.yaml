@@ -7,14 +7,14 @@
       ansible.builtin.command: ./mvnw package -Dmaven.test.skip
       register: package_output
       args:
-        chdir: "/var/mcil/"
+        chdir: "{{ web_app_local_repo_path }}"
     - name: Output packaging result
       ansible.builtin.debug:
         var: package_output
     - name: Run containers
       ansible.builtin.command: docker compose up -d
       args:
-        chdir: "/var/mcil/"
+        chdir: "{{ web_app_local_repo_path }}"
       register: run_output
     - name: 
       ansible.builtin.debug:
