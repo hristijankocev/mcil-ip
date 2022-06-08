@@ -2,7 +2,7 @@
 # Docker provides a quick and automated way to install using a script
 # But we are gonna do it manually just for testing and practice purposes
 - name: Install docker
-  hosts: all
+  hosts: webservers
   become: yes
   tasks:
     - block:
@@ -15,7 +15,7 @@
           ansible.builtin.yum_repository:
             name: docker
             description: Docker YUM repo
-            baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+            baseurl: "{{ docker_repo_url  }}"
         - name: Uninstall old versions of docker
           ansible.builtin.yum:
             name:
@@ -36,6 +36,8 @@
               - containerd.io
               - docker-compose-plugin
             state: present
+            disable_gpg_check: yes
+            update_cache: yes
         - name: Start docker, if not started
           ansible.builtin.service:
             name: docker

@@ -1,6 +1,6 @@
 ---
 - name: Git setup
-  hosts: all
+  hosts: webservers
   # Need privilege escalation to create folder in /var/
   become: yes
   tasks:

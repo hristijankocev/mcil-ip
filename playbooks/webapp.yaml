@@ -1,13 +1,18 @@
 ---
 - name: Package the web app & run the containers
-  hosts: all
+  hosts: webservers
   become: yes
   tasks:
+    - name: Change permissions for mvnw file
+      ansible.builtin.file:
+        path: "{{ web_app_local_repo_path + 'mvnw'  }}"
+        mode: '744'
     - name: Package the spring boot app
       ansible.builtin.command: ./mvnw package -Dmaven.test.skip
       register: package_output
       args:
         chdir: "{{ web_app_local_repo_path }}"
+      become: yes
     - name: Output packaging result
       ansible.builtin.debug:
         var: package_output
@@ -19,10 +24,20 @@
     - name: 
       ansible.builtin.debug:
         var: run_output.stderr_lines
-    - name: Test connection to web app
+    - name: Test connection to web app (locally)
       ansible.builtin.uri:
         url: "http://{{inventory_hostname}}:8080/"
       register: result
       until: result.status == 200
       retries: 20
       delay: 1
+- hosts: localhost
+  tasks:
+    - name: Test reachability to the web servers application (remote)
+      ansible.builtin.uri:
+        url: "{{ 'http://' + item + ':8080/' }}"
+      register: result
+      until: result.status == 200
+      retries: 5
+      delay: 1
+      with_items: "{{ groups['webservers'] }}"

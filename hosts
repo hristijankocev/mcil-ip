@@ -6,3 +6,9 @@ web_app_local_repo_path=/var/mcil/
 
 [localhost:vars]
 ansible_connection=local
+
+[webservers]
+192.168.196.138 ansible_user=hristijankocev
+
+[webservers:vars]
+docker_repo_url=https://download.docker.com/linux/centos/7/x86_64/stable/
