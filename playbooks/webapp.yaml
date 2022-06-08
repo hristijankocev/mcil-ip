@@ -11,8 +11,7 @@
       ansible.builtin.command: ./mvnw package -Dmaven.test.skip
       register: package_output
       args:
-        chdir: "{{ web_app_local_repo_path }}"
-      become: yes
+        chdir: "{{ web_app_local_repo_path }}" 
     - name: Output packaging result
       ansible.builtin.debug:
         var: package_output
