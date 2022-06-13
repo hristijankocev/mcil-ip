@@ -12,4 +12,5 @@
       ansible.builtin.git:
         repo: 'https://github.com/hristijankocev/mcil'
         dest: "{{ web_app_local_repo_path }}"
-        update: no  
+        update: yes
+        force: yes 
