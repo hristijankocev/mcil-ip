@@ -29,12 +29,16 @@ Dependencies of the web app are Selenium and Postgresql, for which we have separ
 - Docker
 
 ## Setup and Usage  
-`$ git clone https://github.com/hristijankocev/mcil-ip` on your ansible control node  
+```
+$ git clone https://github.com/hristijankocev/mcil-ip  
 
-`$ cd mcil-ip/`  
+$ cd mcil-ip/
+```  
 > modify the inventory based on where you want the web app to be delievered  
    
-`$ ansible-playbook site.yaml -i hosts -K --ask-pass`  
+```
+$ ansible-playbook site.yaml -i hosts -K --ask-pass
+```  
 
 If all of the tasks finished without errors, the web app should be available on all of the hosts in the webservers group of the inventory, i.e. http://remote-server:8080/  
 ## Notes
